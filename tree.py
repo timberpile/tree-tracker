@@ -85,7 +85,10 @@ class Tree:
                 return cls.from_json(f.read())
         elif ext == ".zip":
             with zipfile.ZipFile(path, "r") as zipf:
-                with zipf.open("tree.json") as f:
+                files = zipf.namelist()
+                if len(files) != 1:
+                    raise ValueError("Zip file must contain exactly one file!")
+                with zipf.open(files[0]) as f:
                     return cls.from_json(f.read().decode())
         else:
             raise ValueError(f"Input file has invalid extension '{ext}'. Only .json and .zip are allowed.")
