@@ -10,7 +10,6 @@ class Tree:
     parent: Optional['Tree']
     is_dir: bool
     size: int
-    cdate: float
     mdate: float
     children: List['Tree'] = field(default_factory=list)
 
@@ -43,7 +42,6 @@ class Tree:
         def tree_to_dict(tree):
             d = {
                 "name": tree.name,
-                "cdate": tree.cdate,
                 "mdate": tree.mdate,
             }
 
@@ -65,7 +63,6 @@ class Tree:
                 name=d["name"],
                 parent=parent,
                 is_dir=is_dir,
-                cdate=d["cdate"],
                 mdate=d["mdate"],
                 size=0 if is_dir else d["size"],
                 children=[]

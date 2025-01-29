@@ -38,7 +38,6 @@ class TreeScanner:
                 parent=parent,
                 is_dir=True,
                 size=0,
-                cdate=int(dir_metadata.st_birthtime),
                 mdate=int(dir_metadata.st_mtime)
             )
 
@@ -63,7 +62,6 @@ class TreeScanner:
                             parent=dir_tracker,
                             is_dir=False,
                             size=metadata.st_size,
-                            cdate=metadata.st_birthtime,
                             mdate=metadata.st_mtime
                         )
                         dir_tracker.children.append(child)
